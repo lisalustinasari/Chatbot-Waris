@@ -1,0 +1,9 @@
+# project exception
+database.db
+
+# env
+env
+
+# dev
+.vscode
+__pycache__

@@ -1,0 +1,43 @@
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    guest_id VARCHAR(50) NOT NULL
+);
+
+DROP TABLE IF EXISTS chat_room;
+
+CREATE TABLE chat_room (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    chat_name VARCHAR(100) DEFAULT NULL,
+    user_id INTEGER NOT NULL,
+    FOREIGN KEY(user_id) REFERENCES users(id)
+);
+
+
+DROP TABLE IF EXISTS messages;
+
+CREATE TABLE messages (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    message_text TEXT NOT NULL,
+    message_from CHAR(1) NOT NULL DEFAULT 'u' CHECK(message_from IN ('u', 'b')),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    read_at TIMESTAMP DEFAULT NULL,
+    chat_room_id INTEGER NOT NULL, 
+    FOREIGN KEY(chat_room_id) REFERENCES chat_room(id)
+);
+
+DROP TABLE IF EXISTS waris;
+
+CREATE TABLE waris (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    pewaris VARCHAR(100) NOT NULL,
+    jk_pewaris CHAR(1) NOT NULL DEFAULT 'L' CHECK(jk_pewaris IN ('L', 'P')),
+    harta REAL NOT NULL DEFAULT 0,
+    step INTEGER NOT NULL DEFAULT 0,
+    sub_step INTEGER NOT NULL DEFAULT 0,
+    data TEXT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(user_id) REFERENCES users(id)
+);

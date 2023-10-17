@@ -1,0 +1,115 @@
+@import './base.css';
+
+:root {
+	--scrollbar-primary: rgb(221, 221, 221);
+	--scrollbar-secondary: rgb(199, 196, 196);
+}
+
+@layer base {
+	body {
+			line-height: 1.5;
+			font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+				Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+			text-rendering: optimizeLegibility;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			@apply bg-[#f8fffcf1];
+		}
+
+  #app {
+    @apply w-full;
+  }
+
+	/* Firefox */
+	* {
+		scrollbar-width: thin;
+		scrollbar-color: var(--scrollbar-secondary) var(--scrollbar-primary);
+	}
+
+	/* Chrome, Edge, and Safari */
+	*::-webkit-scrollbar {
+		width: 15px;
+	}
+
+	*::-webkit-scrollbar-track {
+		background: var(--scrollbar-primary);
+		border-radius: 5px;
+	}
+
+	*::-webkit-scrollbar-thumb {
+		background-color: var(--scrollbar-secondary);
+		border-radius: 14px;
+		border: 3px solid var(--scrollbar-primary);
+	}
+
+  h1 {
+    font-size: 32pt;
+  }
+
+  h2 {
+    font-size: 28pt;
+  }
+
+  h4 {
+    font-size: 24pt;
+  }
+
+	h4 {
+    font-size: 20pt;
+  }
+
+  h5 {
+    font-size: 16pt;
+  }
+
+	h6 {
+    font-size: 14pt;
+  }
+}
+
+@layer components {
+	.chat-dialog {
+		@apply container bg-slate-100 rounded-b-xl py-3 px-2 max-w-7xl mx-auto relative;
+	}
+
+	.chat-dialog .chat-items {
+		@apply h-[80vh] overflow-y-scroll;
+	}
+
+	.chat-dialog .chat-button {
+		@apply relative flex flex-row bottom-0 border border-gray-500 rounded-lg shadow-slate-200 w-[100%] overflow-clip focus:border-blue-400;
+	}
+
+	.chat-card {
+		@apply relative w-fit max-w-[70%] bg-blue-50 shadow
+					rounded-md my-3 mx-1 px-4 py-2;
+	}
+
+	.chat-sender {
+		@apply flex flex-row justify-end;
+	}
+
+	.chat-receiver {
+		@apply flex flex-row justify-start;
+	}
+
+	.chat-sender > .chat-card .chat-user {
+		@apply text-blue-500 font-semibold text-right;
+		font-size: 12pt;
+	}
+	
+	.chat-sender > .chat-card .chat-date {
+		@apply text-gray-600;
+		font-size: 8pt;
+	}
+
+	.chat-receiver > .chat-card .chat-user{
+		@apply text-green-500 font-semibold;
+		font-size: 12pt;
+	}
+
+	.chat-receiver>.chat-card .chat-date {
+		@apply text-gray-600;
+		font-size: 8pt;
+	}
+}
